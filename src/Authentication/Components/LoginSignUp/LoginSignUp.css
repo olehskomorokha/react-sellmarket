@@ -72,7 +72,11 @@
 .submit-container{
     display: flex;
     gap: 30px;
+    justify-content: center;
+    align-items: center;
     margin: 60px auto;
+    flex-wrap: wrap;
+    width: auto;
 }
 
 .submit{
@@ -89,6 +93,23 @@
     cursor: pointer;
 }
 
+#submitBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    height: 59px;
+    color:#fff;
+    background: #4c00b4;
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+}
+#submitBtn:active {
+    background: gray; /* Change background to gray when pressed */
+    color: white;     /* Optionally change text color to white when pressed */
+}
 .gray{
     background: #EAEAEA;
     color: #676767;

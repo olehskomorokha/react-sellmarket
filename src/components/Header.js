@@ -1,17 +1,22 @@
 import { Link } from 'react-router-dom';
 import '../index.css';
 const Header = () =>{
-    const jwtToken = localStorage.getItem('jwtToken'); // Check for the token
+    const jwtToken = localStorage.getItem('token'); // Check for the token
     return (
-        <div class="Header">
-            <div class="buttons">
-            <button id="addProduct-button">Додати оголошення</button>
+        <div className="Header">
+            <div className="buttons">
+            
+                <Link to="/create-poster" className="button">
+                    Додати оголошення
+                </Link>
                 {jwtToken ? (
-                    // If JWT token exists, show profile button
-                    <button>Мій профіль</button>
+                    // If JWT token exists, show profile button                    
+                    <Link to="/HomePage" className="button">
+                        Мій профіль
+                    </Link>
                 ) : (
                     // If no JWT token, show login/registration button
-                    <Link to="/login" className='button'>
+                    <Link to="/login" className="button">
                         Логін/Регестрація
                     </Link>
                 )}

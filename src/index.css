@@ -1,22 +1,27 @@
 /* header */
+.App{
+  
+}
+body {
+  background-color: black;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 .Header {
+  display: flex;
+  width: 100%;
   background-color: #f8f9fa;
-  padding: 10px 20px;
+  padding: 20px 20px;
+  height: auto;
   text-align: right;
+  justify-content: right;
   border-bottom: 1px solid #ddd;
 }
-
-.buttons button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-left: 10px;
-    cursor: pointer;
-    border-radius: 4px;
-}
-.headerBtn {
-  padding: 10px;
+.buttons{
+  display: flex;
+  justify-content: right;
+  padding-right: 40px;
 }
 .button{
   background-color: #007bff;
@@ -28,4 +33,5 @@
   border-radius: 4px;
   text-decoration: none; 
 }
+
 /* /header */
