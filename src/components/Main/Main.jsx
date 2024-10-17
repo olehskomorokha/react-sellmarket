@@ -1,15 +1,15 @@
 import './Main.css';
-import '../../index.css';
-import Header from './Components/Header';
-import SearchBar from './Components/SearchBar';
-import Filter from './Components/Filter';
+
+import Header from '../Headers/Header';
+import SearchBar from '../Headers/SearchBar';
+import Content from './Components/Content';
 
 const Main = () => {
   return (
     <div>
       <Header/>
       <SearchBar/>
-      <Filter/>
+      <Content/>
     </div>
   );
 };

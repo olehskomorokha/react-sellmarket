@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../Main.css';
+import '../Main/Main.css';
 const Header = () =>{
     const jwtToken = localStorage.getItem('token'); // Check for the token
     return (

@@ -1,8 +1,10 @@
 import React from 'react';
 
+import Header from '../Headers/Header';
 const CreatPoster = () => {
     return (
-        <div>
+        <div className='CreatPoster'>
+            <Header></Header>
             <h1>Create Poster</h1>
             <form>
                 <div>
