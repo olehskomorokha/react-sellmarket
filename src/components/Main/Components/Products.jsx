@@ -30,13 +30,17 @@ const Products = () => {
     return (
         <div className='products'>
             {products.map((product) => (
-                <div className='product' key={product.id}>
+                <div className='product-card' key={product.id}>
                     <img src={formImage(product.img)} alt={product.title} />
-                    <h1>{product.title}</h1>
-                    <h2>Опубліковано {formatDate(product.dateOfPublish)}</h2>
-                    <p><strong>{product.price} грн</strong></p>
+                    <h2>{product.title}</h2>
+                    <h3>Опубліковано {formatDate(product.dateOfPublish)}</h3>
+                    <div className='product-div'>
+                        <p>{product.price} грн</p>
+                        <button className='buy-Btn'>Купити</button>
+                    </div>
                 </div>
             ))}
+
         </div>
     );
 };

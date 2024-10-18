@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../Main/Main.css';
 import Header from '../Headers/Header';
 const CreatPoster = () => {
     return (
