@@ -31,7 +31,7 @@ const Products = () => {
         <div className='products'>
             {products.map((product) => (
                 <div className='product-card' key={product.id}>
-                    <img src={formImage(product.img)} alt={product.title} />
+                    <img src={product.img} alt={product.title} />
                     <h2>{product.title}</h2>
                     <h3>Опубліковано {formatDate(product.dateOfPublish)}</h3>
                     <div className='product-div'>

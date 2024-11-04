@@ -56,7 +56,7 @@ const LoginSingUp = () => {
             if (response.ok) {
                 let token = await response.text();
                 alert('Login successful');
-                // Store the token in localStorage or any state management
+                
                 localStorage.setItem('token', token);
                 navigate("/");
             } else {

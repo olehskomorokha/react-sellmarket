@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import '../Main.css';
 
 const Filter = ({ onFilterChange }) => {
+    
     const [filterText, setFilterText] = useState('');
 
     const handleInputChange = (e) => {
         setFilterText(e.target.value);
-        onFilterChange(e.target.value);
+        console.log(e.target.value);
+        //onFilterChange(e.target.value);
     };
 
     return (
