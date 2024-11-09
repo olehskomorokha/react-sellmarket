@@ -4,11 +4,12 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Header from '../Headers/Header';
 // google map apis
+import Autocomplete from "react-google-autocomplete";
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-
 import { faImage, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { width } from '@fortawesome/free-brands-svg-icons/fa42Group';
 
 library.add(faImage);
 
@@ -154,15 +155,18 @@ const CreatPoster = () => {
                     <br />
                     <input type="text" name="price" id="price" />
                 </div>
-
                 <div className='location'>
-                    <label htmlFor="address">Місцезнаходження:</label>
-                    <br />
-                        <input type="text" name="address" id="address-input" />
+                    <p>Місцезнаходження:</p>
+                    <Autocomplete
+                        apiKey = {process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
+                        onPlaceSelected={(place) => console.log(place)}
+                        style={{
+                            width: "60%",
+                        }
+                        }>
+                    </Autocomplete>
                 </div>
-               
                 <button type="submit" onClick={addProduct}>Створити</button>
-
             </div>
             
         </div>
