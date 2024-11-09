@@ -7,7 +7,7 @@ const Products = () => {
 
     const getProducts = async () => {
         try {
-            const response = await fetch('https://localhost:44383/api/Product/GetProducts');
+            const response = await fetch('https://localhost:7118/api/Product/GetProducts');
             const data = await response.json();
             setProducts(data);
         } catch (error) {
@@ -23,9 +23,9 @@ const Products = () => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString('uk-UA', options);
     };
-    const formImage = (str) => {
-        return str.split(',')[0];
-    };
+    // const formImage = (str) => {
+    //     return str.split(',')[0];
+    // };
 
     return (
         <div className='products'>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../Main/Main.css';
-import SearchImg from '../Assets/search.jpg';
 const SearchBar = ({ onSearch }) => {
     const [query, setQuery] = useState('');
 

@@ -1,15 +1,39 @@
 import React from 'react';
-import '../Main/Main.css';
 import './CreatPoster.css'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Header from '../Headers/Header';
+// google map apis
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+
+import { faImage, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+library.add(faImage);
+
 const CreatPoster = () => {
 
     const [filterText, setFilterText] = useState('');
 
+    const [imageElements, setImageElements] = useState([null, null, null, null]);
+
+    const onInputImageChange = (event, index) => {
+        const file = event.target.files[0];
+        if (file) {
+            const imageUrl = URL.createObjectURL(file);
+            const updatedImages = [...imageElements];
+            updatedImages[index] = imageUrl;
+            setImageElements(updatedImages);
+        }
+    };
+    const removeImage = (index) => {
+        const updatedImages = [...imageElements];
+        updatedImages[index] = null;
+        setImageElements(updatedImages);
+    };
     const loadCategories = async () => {
-        const url = "https://localhost:44383/api/Product/GetAllSubcategory";
+        const url = "https://localhost:7118/api/Product/GetAllSubcategory";
         try {
             const response = await fetch(url);
             if (!response.ok) {
@@ -42,8 +66,7 @@ const CreatPoster = () => {
         //onFilterChange(e.target.value);
     };
     const addProduct = async () => {
-        const url = "https://localhost:44383/api/Product/addProduct";
-        const images = document.getElementById('image').files;
+        const url = "https://localhost:7118/api/Product/addProduct";
         const jwtToken = localStorage.getItem('token'); 
         try {
             const formData = new FormData();
@@ -51,8 +74,12 @@ const CreatPoster = () => {
             formData.append('description', document.getElementById('description').value);
             formData.append('category', filterText);
             formData.append('price', document.getElementById('price').value);
+
+            const images = document.querySelectorAll('.image');
             for (let i = 0; i < images.length; i++) {
-                formData.append('files', images[i]);
+                if (images[i].files[0]) {
+                    formData.append('files', images[i].files[0]);
+                }
             }
 
             const response = await fetch(url, {
@@ -67,7 +94,6 @@ const CreatPoster = () => {
                 throw new Error(`Response status: ${response.status}`);
             }
             
-            const data = await response.json();
             alert('Product added successfully!');
         }
         catch (error) {
@@ -78,6 +104,7 @@ const CreatPoster = () => {
     useEffect(() => {
         loadCategories();
     }, []);
+    // google map api
     return (
         <div className='CreatPoster'>
             <Header></Header>
@@ -95,13 +122,25 @@ const CreatPoster = () => {
                 </div>
 
                 <div className='photo'>
-                    <label htmlFor="image">Фото:</label>
-                    <br />
-                    <input type="file" id="image" name="image" />
-                    <input type="file" id="image" name="image" />
-                    <input type="file" id="image" name="image" />
-                    <input type="file" id="image" name="image" />
-                    <input type="file" id="image" name="image" />
+                    <h3>Виберіть Фото:</h3>
+                    <p>Перше фото буде на заставці</p>
+                    
+                    {imageElements.map((image, index) => (
+                        <div key={index}>
+                            {image ? (<><img src={image} className="label-image" alt={`Uploaded ${index + 1}`} onClick={() => removeImage(index)}  />
+                                    <FontAwesomeIcon icon={faTrash}  className="delete-icon" onClick={() => removeImage(index)} />
+                                    </>) :  
+                                    (<label htmlFor={`image${index + 1}`}> <FontAwesomeIcon icon={faImage} /> </label>)}
+                            <input
+                                type="file"
+                                id={`image${index + 1}`}
+                                className="image"
+                                name="image"
+                                onChange={(e) => onInputImageChange(e, index)}
+                                
+                            />
+                            </div>
+                    ))}
                 </div>
 
                 <div className='description'>
@@ -114,6 +153,12 @@ const CreatPoster = () => {
                     <label htmlFor="price">Ціна за 1 шт.</label>
                     <br />
                     <input type="text" name="price" id="price" />
+                </div>
+
+                <div className='location'>
+                    <label htmlFor="address">Місцезнаходження:</label>
+                    <br />
+                        <input type="text" name="address" id="address-input" />
                 </div>
                
                 <button type="submit" onClick={addProduct}>Створити</button>

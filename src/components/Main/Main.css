@@ -144,6 +144,7 @@ body {
     margin: 10px;
     border:5px solid rgb(0, 0, 0);
     box-shadow: 0 5px 5px gray;
+    object-fit: cover; 
     background-color: violet;
   }
   .product-card img{
@@ -151,6 +152,7 @@ body {
    margin: 0;
    padding: 0;
    width: 440px;
+   object-fit: cover;
   } 
 
   .product-card h2{
