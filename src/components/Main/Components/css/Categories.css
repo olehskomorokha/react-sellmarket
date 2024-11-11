@@ -1,0 +1,91 @@
+  /* Categories */
+  .categories h1{
+    width: 700px;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: 200px;
+  }
+  .categories-container{
+    display: flex;
+    width: 700px;
+    margin-left: auto;
+    margin-right: 200px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 30px;
+    margin-top: 50px;
+    background-color: rgb(244, 201, 201);
+  }
+
+  .category-card {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    margin: 10px;
+    background-color: wheat;
+    background-size: cover; 
+    background-position: center; 
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 8px;
+    height: 200px;
+    width: 200px;
+    text-align: center;
+}
+.category-card[id="1"]{
+  background-image: url('../CategoriesImg/1.jpg');
+}
+.category-card[id="2"]{
+  background-image: url('../CategoriesImg/2.jpg');
+}
+.category-card[id="3"]{
+  background-image: url('../CategoriesImg/3.jpg');
+}
+.category-card[id="5"]{
+  background-image: url('../CategoriesImg/5.jpg');
+}
+.category-card[id="6"]{
+  background-image: url('../CategoriesImg/6.jpg');
+}
+.category-card[id="7"] {
+  background-image: url('../CategoriesImg/7.jpg');
+}
+
+.category-card[id="8"] {
+  background-image: url('../CategoriesImg/8.jpg');
+}
+
+.category-card[id="9"] {
+  background-image: url('../CategoriesImg/9.jpg');
+}
+
+.category-card[id="10"] {
+  background-image: url('../CategoriesImg/10.jpg');
+}
+
+.category-card[id="11"] {
+  background-image: url('../CategoriesImg/11.jpg');
+}
+
+.category-card[id="12"] {
+  background-image: url('../CategoriesImg/12.jpg');
+}
+
+.category-card[id="13"] {
+  background-image: url('../CategoriesImg/13.jpg');
+}
+.category-card[id="14"] {
+  background-image: url('../CategoriesImg/14.jpg');
+}
+.category-card[id="15"] {
+  background-image: url('../CategoriesImg/15.jpg');
+}
+
+.category-card h2{
+  font-size: 20px;
+  color: white;
+  font-weight: normal;
+  background-color: rgba(40, 59, 100, 0.418);
+}
+/* /Categories */

@@ -9,7 +9,7 @@ import Autocomplete from "react-google-autocomplete";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faImage, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { width } from '@fortawesome/free-brands-svg-icons/fa42Group';
+// import { width } from '@fortawesome/free-brands-svg-icons/fa42Group';
 
 library.add(faImage);
 
@@ -60,11 +60,9 @@ const CreatPoster = () => {
         
     };
     const handleInputChange = (e) => {
-        console.log("before "+filterText);
+        console.log("before " + filterText);
         setFilterText(e.target.value);
         console.log(e.target.value);
-    
-        //onFilterChange(e.target.value);
     };
     const addProduct = async () => {
         const url = "https://localhost:7118/api/Product/addProduct";
@@ -161,13 +159,22 @@ const CreatPoster = () => {
                         apiKey = {process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
                         onPlaceSelected={(place) => console.log(place)}
                         style={{
-                            width: "60%",
-                        }
-                        }>
+                            width: '60%'
+                        }}>
                     </Autocomplete>
+                </div>
+                <div className='personal-information'>
+                    <p>Контактна інформація:</p>
+                    <input type="text" placeholder="Ім'я" />
+                    <br />
+                    <input type="text" placeholder="Телефон" />
+                    <br />
+                    <input type="text" placeholder="Email" />
                 </div>
                 <button type="submit" onClick={addProduct}>Створити</button>
             </div>
+
+           
             
         </div>
     );
