@@ -1,0 +1,85 @@
+.subcategories h1{
+    width: 700px;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: 200px;
+  }
+  .subcategories-container{
+    display: flex;
+    width: 700px;
+    margin-left: auto;
+    margin-right: 200px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 30px;
+    margin-top: 50px;
+    background-color: rgb(244, 201, 201);
+  }
+
+  .subcategory-card {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    margin: 10px;
+    background-color: wheat;
+    background-size: cover; 
+    background-position: center; 
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 8px;
+    height: 200px;
+    width: 200px;
+    text-align: center;
+}
+.subcategory-card h2{
+    font-size: 20px;
+    color: white;
+    font-weight: normal;
+    background-color: rgba(40, 59, 100, 0.418);
+  }
+.subcategory-card[id="16"]{
+    background-image: url('../SubCategoryImg/16.jpg');
+}
+.subcategory-card[id="17"]{
+    background-image: url('../SubCategoryImg/17.jpg');
+}
+.subcategory-card[id="18"]{
+    background-image: url('../SubCategoryImg/18.jpg');
+}
+.subcategory-card[id="19"]{
+    background-image: url('../SubCategoryImg/19.jpg');
+}
+.subcategory-card[id="20"]{
+    background-image: url('../SubCategoryImg/20.jpg');
+}
+.subcategory-card[id="21"]{
+    background-image: url('../SubCategoryImg/21.jpg');
+}
+.subcategory-card[id="22"]{
+    background-image: url('../SubCategoryImg/22.jpg');
+}
+.subcategory-card[id="23"]{
+    background-image: url('../SubCategoryImg/23.jpg');
+}
+.subcategory-card[id="24"]{
+    background-image: url('../SubCategoryImg/24.jpg');
+}
+.subcategory-card[id="25"]{
+    background-image: url('../SubCategoryImg/25.jpg');
+}
+.subcategory-card[id="26"]{
+    background-image: url('../SubCategoryImg/26.jpg');
+}
+.subcategory-card[id="27"]{
+    background-image: url('../SubCategoryImg/27.jpg');
+}
+.subcategory-card[id="28"]{
+    background-image: url('../SubCategoryImg/28.jpg');
+}
+.subcategory-card[id="29"]{
+    background-image: url('../SubCategoryImg/29.jpg');
+}
+.subcategory-card[id="30"]{
+    background-image: url('../SubCategoryImg/30.jpg');
+}

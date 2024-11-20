@@ -1,13 +1,15 @@
 import React from 'react';
 import '../Main.css';
+import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 const Products = () => {
-   
+    const { id } = useParams();
     const [products, setProducts] = useState([]);
 
     const getProducts = async () => {
         try {
-            const response = await fetch('https://localhost:7118/api/Product/GetProducts');
+            const url = `https://localhost:7118/api/Product/GetProductsBySubcategoryId?id=${id}`;
+            const response = await fetch(url);
             const data = await response.json();
             setProducts(data);
         } catch (error) {

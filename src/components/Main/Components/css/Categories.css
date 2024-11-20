@@ -42,6 +42,9 @@
 .category-card[id="3"]{
   background-image: url('../CategoriesImg/3.jpg');
 }
+.category-card[id="4"]{
+  background-image: url('../CategoriesImg/4.jpg');
+}
 .category-card[id="5"]{
   background-image: url('../CategoriesImg/5.jpg');
 }
