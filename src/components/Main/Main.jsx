@@ -4,6 +4,7 @@ import Header from '../Headers/Header';
 import SearchBar from '../Headers/SearchBar';
 import Content from './Components/Content';
 import Categories from './Components/Categories';
+import Menu from './Components/Menu';
 
 
 const Main = () => {
@@ -13,7 +14,11 @@ const Main = () => {
       <div>
         <Header/>
         <SearchBar/>
-        <Categories/>
+        <div className='main-container'>
+          <Menu/>
+          <Categories/>
+        </div>
+        
         {/* <SubCategories/> */}
         {/* <Content/>  */}
         </div>
@@ -24,9 +29,13 @@ const Main = () => {
         <div>
           <Header/>
           <SearchBar/>
+          <div className='main-container'>
+            <Menu/>
+            <Categories/>
+          </div>
           {/* <Categories/> */}
-            {/* <SubCategories/> */}
-          <Content/> 
+          {/* <SubCategories/> */}
+          {/* <Content/>  */}
         </div>
       );
      

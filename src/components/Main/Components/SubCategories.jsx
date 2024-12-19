@@ -6,6 +6,7 @@ import Header from '../../Headers/Header';
 import SearchBar from '../../Headers/SearchBar';
 import './css/SubCategories.css';
 import Content from './Content';
+import Menu from './Menu';
 const SubCategories = () => {
     const navigate = useNavigate();
     const { id } = useParams();
@@ -44,17 +45,22 @@ const SubCategories = () => {
         <>
             <Header/>
             <SearchBar/>
-            <div className='subcategories'>
-                
-                <h1>ГРУПИ ТОВАРІВ ТА ПОСЛУГ</h1>
-                <div className='subcategories-container'>
-                    {data.map(category => (
-                        <div key={category.id} id={category.id} className='subcategory-card' onClick={() => navigate(`/${category.id}`)}>
-                            <h2>{category.category + category.id}</h2>
-                        </div>
-                    ))}
+            <div className='main-container'>
+                <Menu/>
+                <div className='subcategories'>
+                    <h1>ГРУПИ ТОВАРІВ ТА ПОСЛУГ</h1>
+                    <div className='subcategories-container'>
+                        {data.map(category => (
+                            <div key={category.id} id={category.id} className='subcategory-card' onClick={() => navigate(`/subCategories/${category.id}`)}>
+                                <h2>{category.category + category.id}</h2>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
+           
+
+            
         </>
     );
 
