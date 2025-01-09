@@ -5,6 +5,7 @@ import SearchBar from '../Headers/SearchBar';
 import Content from './Components/Content';
 import Categories from './Components/Categories';
 import Menu from './Components/Menu';
+import PageRouter from './Components/PageRouter';
 
 
 const Main = () => {
@@ -16,7 +17,10 @@ const Main = () => {
         <SearchBar/>
         <div className='main-container'>
           <Menu/>
-          <Categories/>
+          <div className='main-bar'>
+            <PageRouter/>
+            <Categories/>
+          </div>
         </div>
         
         {/* <SubCategories/> */}
@@ -35,7 +39,7 @@ const Main = () => {
           </div>
           {/* <Categories/> */}
           {/* <SubCategories/> */}
-          {/* <Content/>  */}
+          <Content/> 
         </div>
       );
      

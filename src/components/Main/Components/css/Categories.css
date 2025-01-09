@@ -1,6 +1,8 @@
   /* Categories */
   .categories{
     max-width: 1100px;
+    margin: 0;
+    margin-right: 400px;
   }
   .categories h1{
     font-size: 20px;
@@ -14,8 +16,8 @@
     margin-right: 100px;
     justify-content: space-around;
     flex-wrap: wrap;
-    padding: 30px;
     margin-top: 0px;
+    max-width: 100%;
     background-color: white;
   }
 
