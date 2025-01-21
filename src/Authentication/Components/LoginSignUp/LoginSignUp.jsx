@@ -19,7 +19,7 @@ const LoginSingUp = () => {
         };
 
         try {
-            let response = await fetch('https://localhost:44383/api/User/Register', {
+            let response = await fetch('https://localhost:7118/api/User/Register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -45,7 +45,7 @@ const LoginSingUp = () => {
         };
 
         try {
-            let response = await fetch('https://localhost:44383/api/User/Login', {
+            let response = await fetch('https://localhost:7118/api/User/Login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

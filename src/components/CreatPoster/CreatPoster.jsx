@@ -34,7 +34,7 @@ const CreatPoster = () => {
         setImageElements(updatedImages);
     };
     const loadCategories = async () => {
-        const url = "https://localhost:44383/api/Product/GetAllSubcategory";
+        const url = "https://localhost:7118/api/Product/GetAllSubcategory";
         try {
             const response = await fetch(url);
             if (!response.ok) {
@@ -65,7 +65,7 @@ const CreatPoster = () => {
         console.log(e.target.value);
     };
     const addProduct = async () => {
-        const url = "https://localhost:44383/api/Product/addProduct";
+        const url = "https://localhost:7118/api/Product/addProduct";
         const jwtToken = localStorage.getItem('token'); 
         try {
             const formData = new FormData();

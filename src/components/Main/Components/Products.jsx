@@ -8,7 +8,7 @@ const Products = () => {
 
     const getProducts = async () => {
         try {
-            const url = `https://localhost:44383/api/Product/GetProductsBySubcategoryId?id=${id}`;
+            const url = `https://localhost:7118/api/Product/GetProductsBySubcategoryId?id=${id}`;
             const response = await fetch(url);
             const data = await response.json();
             setProducts(data);

@@ -7,7 +7,7 @@ const Categories = () => {
     const [data, setData] = useState([]);
 
     const fetchCategories = async () => {
-        const url = 'https://localhost:44383/api/Product/GetProductCategory';
+        const url = 'https://localhost:7118/api/Product/GetProductCategory';
         try {
             const response = await fetch(url);
             if (!response.ok) {

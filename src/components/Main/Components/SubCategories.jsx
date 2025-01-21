@@ -12,7 +12,7 @@ const SubCategories = () => {
     const { id } = useParams();
     const [data, setData] = useState([]);
     const fetchSubCategories = async () => {
-        const url = `https://localhost:44383/api/Product/GetSubcategoriesByCategoryId?id=${id}`;
+        const url = `https://localhost:7118/api/Product/GetSubcategoriesByCategoryId?id=${id}`;
         try {
             const response = await fetch(url);
             if (!response.ok) {
