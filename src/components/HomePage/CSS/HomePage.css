@@ -1,3 +1,4 @@
+
 .header2{
     display: flex;
     margin-left: 10%;
@@ -18,7 +19,18 @@
 .nav-button:hover {
     background-color: #0056b3; 
 }
-
+#logout-btn{
+  margin-left: auto;
+  height: 40px;
+  border: none; 
+  background-color: #a84444; 
+  color: white; 
+  cursor: pointer; 
+  font-size: 20px;
+}
+#logout-btn:hover{
+  background-color: #a75757;
+}
 .posts {
     display: flex;
     margin-left: 10%;

@@ -2,10 +2,25 @@ import React from 'react';
 import Header from '../Headers/Header'
 import './CSS/HomePage.css'
 import { useState, useEffect } from 'react';
-// google map apis
-import Autocomplete from "react-google-autocomplete";
+import { useNavigate } from "react-router-dom";
+import PostsSection from './PostsSection';
+import ProfileSection from './ProfileSection';
+import {Modal, Button} from 'react-bootstrap';
+import Settings from './Settings';
 
 const HomePage = () => {
+    const navigate = useNavigate();
+    const [logOut, setLogout] = useState("");
+    const [show, setShow] = useState(false);
+
+    const handleClose = () =>{
+        setShow(false)  
+    }
+    const handleClickLogout = () => {
+        setShow(true);
+    }
+
+
     const [userNick, setUserNick] = useState("");
     const [userAdress, setUserAdress] = useState("");
     const [userPhone, setUserPhone] = useState("");
@@ -66,14 +81,14 @@ const HomePage = () => {
 
     }
 
-    const addUserAdress = async () =>{
+    const addUserAddress = async () =>{
         let userContactModel = {
             nickName: userNick,
             adress: userAdress,
             phone: userPhone
         }
         try{
-            const url = `https://localhost:7118/api/User/addUserAdress`;
+            const url = `https://localhost:7118/api/User/AddUserAddress`;
             const response = await fetch(url,  {
                     method: 'PUT',
                     headers: {
@@ -104,8 +119,11 @@ const HomePage = () => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString('uk-UA', options);
     };
-
-     useEffect(() => {
+    const logout = () =>{
+        localStorage.removeItem('token');
+        navigate('/');
+    }
+    useEffect(() => {
         getUserProducts();
         getUserInfo();
         // Відновити активну секцію після перезавантаження
@@ -115,12 +133,29 @@ const HomePage = () => {
             setActiveButton(savedSection);
         }
         }, []);
+   
     
     const handleContactForm = () => {
         setIsEditing((prev) => !prev);
     }
     return (
+        
         <>
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+            <Modal.Title>Розлогінитись</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Впевнені що хочите вийти?</Modal.Body>
+            <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+                Close
+            </Button>
+            <Button variant="primary" onClick={logout}>
+                Save Changes
+            </Button>
+            </Modal.Footer>
+        </Modal>
+
         <Header />
         <div className='home-page'>
            <h1>Профіль</h1>
@@ -128,105 +163,31 @@ const HomePage = () => {
             
             <button id="myPost" className={activeButton === 'posts' ? 'active-btn' : 'nav-button'} onClick={() => {setActiveSection('posts'); setActiveButton('posts')}}>Мої оголошення</button>
             <button id="Profile" className={activeButton === 'profile' ? 'active-btn' : 'nav-button'} onClick={() => {setActiveSection('profile'); setActiveButton('profile')}}>Профіль</button>
-            <button id="ProfileSettings" className='nav-button'>Налаштування</button>
+            <button id="ProfileSettings" className={activeSection === 'ProfileSettings' ? 'active-btn' : 'nav-button'} onClick={() => {setActiveSection('ProfileSettings'); setActiveButton('ProfileSettings')}}>Налаштування</button>
             <button id="Pay" className='nav-button'>Оплата</button>
+            
+           <button id="logout-btn" onClick={handleClickLogout}>Вийти</button>
            </header>
            
-           <div className={activeSection === 'posts' ? 'posts' : 'hidden'}>
-            {posts.map((post) => (
-                <div className='post-card' key={post.id}>
-                    <img src={post.img} alt={post.title} />
-                    <h2>{post.title}</h2>
-                    <h3>Опубліковано {formatDate(post.dateOfPublish)}</h3>
-                    <div className='post-div'>
-                        <p>{post.price} грн</p>
-                        <button className='delete-Btn'>Видалити</button>
-                    </div>
-                </div>
-                ))}
-            </div>
-            <div className={activeSection === 'profile' ? 'profile' : 'hidden'}>
-                <div className='user-Avatar-info'>
-                    <img
-                        src={'https://api.dicebear.com/9.x/adventurer/svg?seed=Alex'}
-                        alt="Аватар користувача"
-                        className="avatar"
+           <div className='home-page'>
+                {activeSection === 'posts' && <PostsSection posts={posts} formatDate={formatDate} handleClose={handleClose} />}
+                {activeSection === 'profile' && (
+                    <ProfileSection
+                        user={user}
+                        isEditing={isEditing}
+                        handleContactForm={handleContactForm}
+                        setUserNick={setUserNick}
+                        setUserAdress={setUserAdress}
+                        setUserPhone={setUserPhone}
+                        userNick={userNick}
+                        userAdress={userAdress}
+                        userPhone={userPhone}
+                        addUserAddress={addUserAddress}
                     />
-
-                    <div className='user-info'>
-                        <h3>Основна інформація:</h3>
-                        <label htmlFor="username">Імя</label>
-                        <h4>{user.firstName}</h4>
-
-                        <label htmlFor="userLastname">Фамілія</label>
-                        <h4>{user.lastName}</h4>
-
-                        <label htmlFor="userEmail">Email</label>
-                        <h4>{user.userEmail}</h4>
-                    </div>
-                </div>
-
-                <div className='user-contact-info'>
-                    <h3>Контактна інформація</h3>
-                    
-                    <div className='contact-info' style={{ display: isEditing ? "none" : "" }}>
-                        <button id='render-btn' onClick={handleContactForm}>редагувати</button>
-                        <div>
-                            <label htmlFor="nickName">нікнейм</label><br />
-                            <h4>{user.nickName}</h4>
-                        </div>
-                                
-                        <div>
-                            <label htmlFor='place'>Місцерозташування</label><br />
-                            <h4>{user.address}</h4>
-                        </div>  
-                        <div>
-                            <label htmlFor='phone-number'>Номер телефону</label><br />
-                            <h4>{user.phoneNumber}</h4>
-                        </div>
-                    </div>
-
-                    <div className='contact-info-form' style={{ display: isEditing ? "" : "none" }}>
-                        <form>
-                            <div>
-                                <label htmlFor="nickName">нікнейм</label><br />
-                                <input id='nickName' 
-                                    type="text" 
-                                    onChange={e => setUserNick(e.target.value)} 
-                                    placeholder='введіть нікнейм'
-                                    value={userNick}/> <br />
-                            </div>
-                                
-                            <div>
-                                <label htmlFor='place'>Місцерозташування</label><br />
-                                <Autocomplete
-                                    apiKey = {process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
-                                    onPlaceSelected={(place) => console.log(place)}
-                                    onChange={e => setUserAdress(e.target.value)}
-                                    value={userAdress}
-                                    >
-                                </Autocomplete>
-                            </div>  
-                            <div>
-                                <label htmlFor='phone-number'>Номер телефону</label><br />
-                                <input id='phone-number' 
-                                    type='tel' 
-                                    placeholder='+380' 
-                                    onChange={e => setUserPhone(e.target.value)} 
-                                    required 
-                                    maxLength={12}
-                                    value={userPhone}
-                                    />
-                            </div>
-                        </form>
-                        <button className='discard-changes-button' type='submit' onClick={handleContactForm}>Скасувати</button>
-                        <button className='save-button' type='submit' onClick={addUserAdress}>Зберегти</button>
-                        
-                    </div>
-                   
-                   
-                </div>
-               
+                )}
+                {activeSection === 'ProfileSettings' && 
+                    <Settings />
+                }
             </div>
 
         </div>

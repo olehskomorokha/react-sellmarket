@@ -1,10 +1,12 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginSignUp from './Authentication/Components/LoginSignUp/LoginSignUp.jsx';
 import HomePage from './components/HomePage/HomePage.jsx';
 import Main from './components/Main/Main.jsx';
 import CreatPoster from './components/CreatPoster/CreatPoster.jsx';
 import SubCategories from './components/Main/Components/SubCategories.jsx';
+
 
 function App() {
   return (
