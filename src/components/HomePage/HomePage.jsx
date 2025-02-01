@@ -10,7 +10,6 @@ import Settings from './Settings';
 
 const HomePage = () => {
     const navigate = useNavigate();
-    const [logOut, setLogout] = useState("");
     const [show, setShow] = useState(false);
 
     const handleClose = () =>{
@@ -19,8 +18,7 @@ const HomePage = () => {
     const handleClickLogout = () => {
         setShow(true);
     }
-
-
+    
     const [userNick, setUserNick] = useState("");
     const [userAdress, setUserAdress] = useState("");
     const [userPhone, setUserPhone] = useState("");
@@ -53,9 +51,7 @@ const HomePage = () => {
         }
     }
     const getUserInfo = async () => {
-        
         try{
-            
             const url = `https://localhost:7118/api/User/getUserInfo`;
             const response = await fetch(url, {
                     method: 'GET',
@@ -115,6 +111,11 @@ const HomePage = () => {
         }
 
     }
+    const handleSectionChange = (section) => {
+        setActiveSection(section);
+        setActiveButton(section);
+        localStorage.setItem('activeSection', section);
+    };
     const formatDate = (dateString) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString('uk-UA', options);
@@ -139,7 +140,6 @@ const HomePage = () => {
         setIsEditing((prev) => !prev);
     }
     return (
-        
         <>
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
@@ -161,16 +161,16 @@ const HomePage = () => {
            <h1>Профіль</h1>
            <header className='header2'>
             
-            <button id="myPost" className={activeButton === 'posts' ? 'active-btn' : 'nav-button'} onClick={() => {setActiveSection('posts'); setActiveButton('posts')}}>Мої оголошення</button>
-            <button id="Profile" className={activeButton === 'profile' ? 'active-btn' : 'nav-button'} onClick={() => {setActiveSection('profile'); setActiveButton('profile')}}>Профіль</button>
-            <button id="ProfileSettings" className={activeSection === 'ProfileSettings' ? 'active-btn' : 'nav-button'} onClick={() => {setActiveSection('ProfileSettings'); setActiveButton('ProfileSettings')}}>Налаштування</button>
+            <button id="myPost" className={activeButton === 'posts' ? 'active-btn' : 'nav-button'} onClick={() => handleSectionChange('posts')}>Мої оголошення</button>
+            <button id="Profile" className={activeButton === 'profile' ? 'active-btn' : 'nav-button'} onClick={() => handleSectionChange('profile')}>Профіль</button>
+            <button id="ProfileSettings" className={activeSection === 'ProfileSettings' ? 'active-btn' : 'nav-button'} onClick={() => handleSectionChange('ProfileSettings')}>Налаштування</button>
             <button id="Pay" className='nav-button'>Оплата</button>
             
            <button id="logout-btn" onClick={handleClickLogout}>Вийти</button>
            </header>
            
            <div className='home-page'>
-                {activeSection === 'posts' && <PostsSection posts={posts} formatDate={formatDate} handleClose={handleClose} />}
+                {activeSection === 'posts' && <PostsSection posts={posts} formatDate={formatDate} handleClose={handleClose}/>}
                 {activeSection === 'profile' && (
                     <ProfileSection
                         user={user}

@@ -69,10 +69,10 @@ const CreatPoster = () => {
         const jwtToken = localStorage.getItem('token'); 
         try {
             const formData = new FormData();
-            formData.append('title', document.getElementById('title').value);
-            formData.append('description', document.getElementById('description').value);
-            formData.append('category', filterText);
-            formData.append('price', document.getElementById('price').value);
+            formData.append('Title', document.getElementById('title').value);
+            formData.append('Description', document.getElementById('description').value);
+            formData.append('Category', filterText);
+            formData.append('Price', document.getElementById('price').value);
 
             const images = document.querySelectorAll('.image');
             for (let i = 0; i < images.length; i++) {
